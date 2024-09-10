@@ -1,21 +1,25 @@
-# A Comprehensive Guide to Customizing Windows Terminal with Oh My Posh
+# Comprehensive Guide to Customizing Windows Terminal and VS Code with Oh My Posh
 
 ## Prerequisites
 
 - Windows 10 or 11
 - Windows Terminal (install from Microsoft Store if not already installed)
 - PowerShell 5.1 or PowerShell Core 6+ (preferably PowerShell 7+)
+- Visual Studio Code
 - Administrator privileges
 
 ## Installation and Setup Process
 
 ```mermaid
-graph TD
+graph LR
     A[Start] --> B[Install Oh My Posh]
     B --> C[Install Nerd Font]
     C --> D[Configure Windows Terminal]
-    D --> E[Install Terminal Icons]
-    E --> F[Configure PowerShell Profile]
+    C --> E[Install Terminal Icons]
+    C --> I[Configure VS Code]
+    D --> F[Configure PowerShell Profile]
+    E --> F
+    I --> F
     F --> G[Restart PowerShell]
     G --> H[Enjoy Customized Terminal]
 ```
@@ -63,19 +67,22 @@ graph TD
 3. In the left sidebar, click on "Open JSON file"
 4. In the `profiles` section, add or modify the `defaults` object:
    ```json
-   "profiles": {
-     "defaults": {
-       "font": {
-         "face": "CascadiaCode NF",
-         "size": 11
-       }
-     },
-     "list": [
-       // ... existing profiles ...
-     ]
+   "profiles": 
+   {
+       "defaults": 
+       {
+           "font": 
+           {
+               "face": "SauceCodePro NF",
+               "size": 11
+           }
+       },
+       "list": [
+           // ... existing profiles ...
+       ]
    }
    ```
-   Replace "CascadiaCode NF" with the name of the Nerd Font you installed
+   Replace "SauceCodePro NF" with the name of the Nerd Font you installed
 5. Save the file and close it
 
 ### Step 4: Install Terminal Icons (optional)
@@ -101,9 +108,35 @@ graph TD
    ```
 4. Save the file and close it
 
-### Step 6: Restart PowerShell
+### Step 6: Configure VS Code
 
-Close and reopen PowerShell, or run the following command to reload your profile:
+1. Open Visual Studio Code
+2. Press `Ctrl+,` to open Settings
+3. In the search bar, type "font"
+4. Find "Editor: Font Family" and add the Nerd Font to the beginning of the list. For example:
+   ```
+   'SauceCodePro NF', Consolas, 'Courier New', monospace
+   ```
+5. To enable font ligatures (optional), find "Editor: Font Ligatures" and set it to `true`
+6. To configure the integrated terminal, search for "terminal font" and update "Terminal > Integrated > Font Family" with the same font:
+   ```
+   SauceCodePro NF
+   ```
+7. If you want to use Oh My Posh in the VS Code integrated terminal, you can add the following to your `settings.json`:
+   ```json
+   "terminal.integrated.profiles.windows": {
+     "PowerShell": {
+       "source": "PowerShell",
+       "icon": "terminal-powershell",
+       "args": ["-NoExit", "-Command", "oh-my-posh init pwsh --config 'C:/Users/ditah/AppData/Local/Programs/oh-my-posh/themes/clean-detailed.omp.json' | Invoke-Expression"]
+     }
+   },
+   "terminal.integrated.defaultProfile.windows": "PowerShell"
+   ```
+
+### Step 7: Restart PowerShell and VS Code
+
+Close and reopen PowerShell and VS Code for the changes to take effect. Alternatively, in PowerShell, you can run:
 ```powershell
 . $PROFILE
 ```
@@ -124,12 +157,11 @@ Close and reopen PowerShell, or run the following command to reload your profile
    - Update your profile to use the custom theme file
 
 3. **Troubleshooting:**
-   - If icons don't appear correctly, ensure you've installed a Nerd Font and configured Windows Terminal to use it
-   - If colors seem off, check your terminal color scheme in the Windows Terminal settings
+   - If icons don't appear correctly, ensure you've installed a Nerd Font and configured Windows Terminal and VS Code to use it
+   - If colors seem off, check your terminal color scheme in the Windows Terminal settings and VS Code settings
 
 4. **Additional customization:**
    - Explore Oh My Posh documentation for advanced configuration options: https://ohmyposh.dev/docs/
    - Consider adding aliases or custom functions to your PowerShell profile for frequently used commands
 
-By following these steps, you should have a fully customized Windows Terminal with Oh My Posh, complete with a stylish prompt and custom font. Remember to experiment with different themes and settings to find what works best for you!
-
+By following these steps, you should have a fully customized Windows Terminal and VS Code setup with Oh My Posh, complete with a stylish prompt and custom font. Remember to experiment with different themes and settings to find what works best for you!
