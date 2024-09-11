@@ -170,15 +170,28 @@ Run the following commands in your terminal:
 ```bash
 git config --global alias.st status
 git config --global alias.br branch
-git config --global alias.ci commit
-git config --global alias.co checkout
+git config --global alias.co commit
+git config --global alias.ch checkout
 ```
 
 These commands create the following aliases:
 - `git st` for `git status`
 - `git br` for `git branch`
-- `git ci` for `git commit`
-- `git co` for `git checkout`
+- `git co` for `git commit`
+- `git ch` for `git checkout`
+
+### Optional Git Aliases
+
+You can set up additional aliases for even more convenience:
+
+```bash
+git config --global alias.pu pull
+git config --global alias.ph push
+```
+
+These commands create the following additional aliases:
+- `git pu` for `git pull`
+- `git ph` for `git push`
 
 After setting these aliases, you can use them in any terminal or Git-enabled application. For example, typing `git st` will execute `git status`.
 
@@ -187,6 +200,14 @@ To view all your current Git aliases, run:
 ```bash
 git config --get-regexp alias
 ```
+
+To remove an alias you no longer want, use the `--unset` option. For example:
+
+```bash
+git config --global --unset alias.ci
+```
+
+This command would remove the `ci` alias if you had it set previously.
 
 Note: These aliases are different from shell-specific aliases (like those you might set in `.zshrc`). These Git aliases work with the `git` command itself and are available in any shell or Git-enabled application.
 
