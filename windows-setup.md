@@ -1,5 +1,23 @@
 # Comprehensive Guide to Customizing Windows Terminal and VS Code with Oh My Posh
 
+## Table of Contents
+1. [Prerequisites](#prerequisites)
+2. [Installation and Setup Process](#installation-and-setup-process)
+3. [Detailed Steps](#detailed-steps)
+   1. [Install Oh My Posh](#step-1-install-oh-my-posh)
+   2. [Install a Nerd Font](#step-2-install-a-nerd-font)
+   3. [Configure Windows Terminal](#step-3-configure-windows-terminal)
+   4. [Install Terminal Icons](#step-4-install-terminal-icons-optional)
+   5. [Configure PowerShell Profile](#step-5-configure-powershell-profile)
+   6. [Configure VS Code](#step-6-configure-vs-code)
+   7. [Restart PowerShell and VS Code](#step-7-restart-powershell-and-vs-code)
+4. [Additional Tips](#additional-tips)
+   1. [Exploring themes](#1-exploring-themes)
+   2. [Customizing themes](#2-customizing-themes)
+   3. [Troubleshooting](#3-troubleshooting)
+   4. [Additional customization](#4-additional-customization)
+5. [Setting up Git Aliases](#setting-up-git-aliases)
+
 ## Prerequisites
 
 - Windows 10 or 11
@@ -143,7 +161,7 @@ Close and reopen PowerShell and VS Code for the changes to take effect. Alternat
 
 ## Additional Tips
 
-1. **Exploring themes:**
+### 1. Exploring themes:
    - Browse themes at https://ohmyposh.dev/docs/themes
    - To try a different theme, replace the config path in your profile with:
      ```powershell
@@ -151,17 +169,55 @@ Close and reopen PowerShell and VS Code for the changes to take effect. Alternat
      ```
      Replace `<theme-name>` with the desired theme name
 
-2. **Customizing themes:**
+### 2. Customizing themes:
    - Copy a theme JSON file from `$env:POSH_THEMES_PATH` to a personal location
    - Edit the JSON file to customize colors, segments, etc.
    - Update your profile to use the custom theme file
 
-3. **Troubleshooting:**
+### 3. Troubleshooting:
    - If icons don't appear correctly, ensure you've installed a Nerd Font and configured Windows Terminal and VS Code to use it
    - If colors seem off, check your terminal color scheme in the Windows Terminal settings and VS Code settings
 
-4. **Additional customization:**
+### 4. Additional customization:
    - Explore Oh My Posh documentation for advanced configuration options: https://ohmyposh.dev/docs/
    - Consider adding aliases or custom functions to your PowerShell profile for frequently used commands
 
-By following these steps, you should have a fully customized Windows Terminal and VS Code setup with Oh My Posh, complete with a stylish prompt and custom font. Remember to experiment with different themes and settings to find what works best for you!
+## Setting up Git Aliases
+
+To streamline your Git workflow, you can set up the following aliases:
+
+1. Open PowerShell as Administrator
+2. Run the following commands to set up essential Git aliases:
+   ```powershell
+   git config --global alias.st status
+   git config --global alias.br branch
+   git config --global alias.co commit
+   git config --global alias.ch checkout
+   ```
+3. These essential aliases allow you to use shorter commands:
+   - `git st` for `git status`
+   - `git br` for `git branch`
+   - `git co` for `git commit`
+   - `git ch` for `git checkout`
+
+4. Optionally, you can set up additional aliases for push and pull:
+   ```powershell
+   git config --global alias.pu pull
+   git config --global alias.ph push
+   ```
+   These optional aliases provide:
+   - `git pu` for `git pull`
+   - `git ph` for `git push`
+
+5. To view all your current Git aliases, run:
+   ```powershell
+   git config --get-regexp alias
+   ```
+6. To remove an alias you no longer want, use the `--unset` option. For example:
+   ```powershell
+   git config --global --unset alias.st
+   ```
+
+Note: These Git aliases work with the `git` command itself and are available in any shell or Git-enabled application, not just in PowerShell.
+
+By following these steps and tips, you'll have a fully customized Windows Terminal and VS Code setup with Oh My Posh, complete with a stylish prompt, custom font, and efficient Git aliases. Remember to experiment with different themes, settings, and aliases to find the configuration that works best for your workflow!
